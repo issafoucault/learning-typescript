@@ -144,3 +144,26 @@ mathematician?.length; // Ok
 
 mathematician = "Mark Goldberg";
 mathematician.length; // Ok
+
+// Type Aliases
+
+let rawDataFirst: boolean | number | string | null | undefined;
+let rawDataSecond: boolean | number | string | null | undefined;
+let rawDataThird: boolean | number | string | null | undefined;
+
+type MyName = ...;
+
+type RawData = boolean | number | string | null | undefined;
+let rawDataFirst: RawData;
+let rawDataSecond: RawData;
+let rawDataThird: RawData;
+
+// Combining Type Aliases
+
+type Id = number | string;
+
+// Equivalent to: number | string | undefined | null
+type IdMaybe = Id | undefined | null;
+
+type IdMaybe = Id | undefined | null; // Ok
+type Id = number | string;
