@@ -88,3 +88,59 @@ specificallyAda = someString;
 // Error: Type 'string' is not assignable to type '"Ada"'.
 
 someString = ":)";
+
+// Strict Null Checking
+
+let nameMaybe = Math.random() > 0.5
+  ? "Tony Hoare"
+  : undefined;
+
+nameMaybe.toLowerCase();
+// Potential runtime error: Cannot read property 'toLowerCase' of undefined.
+
+let nameMaybe = Math.random() > 0.5
+  ? "Tony Hoare"
+  : undefined;
+
+nameMaybe.toLowerCase();
+// Error: Object is possibly 'undefined'.
+
+// Truthiness Narrowing
+
+let geneticist = Math.random() > 0.5
+  ? "Barbara McClintock"
+  : undefined;
+
+if (geneticist) {
+  geneticist.toUpperCase(); // Ok: string
+}
+
+geneticist.toUpperCase();
+// Error: Object is possibly 'undefined'.
+
+geneticist && geneticist.toUpperCase(); // Ok: string | undefined
+geneticist?.toUpperCase(); // Ok: string | undefined
+
+let biologist = Math.random() > 0.5 && "Rachel Carson";
+
+if (biologist) {
+  biologist; // Type: string
+} else {
+  biologist; // Type: false | string
+}
+
+// Variables Without Initial Values
+let mathematician: string;
+
+mathematician?.length;
+// Error: Variable 'mathematician' is used before being assigned
+
+mathematician = "Mark Goldberg";
+mathematician.length; // Ok
+
+let mathematician: string | undefined;
+
+mathematician?.length; // Ok
+
+mathematician = "Mark Goldberg";
+mathematician.length; // Ok
